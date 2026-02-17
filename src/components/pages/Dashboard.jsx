@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
-  LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, 
-  Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, 
+  Tooltip, ResponsiveContainer, PieChart, Pie, Cell,
   AreaChart, Area
 } from 'recharts';
 import { 
@@ -110,7 +110,6 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-[#f8fafc] p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
-        {/* Quick Stats Row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {stats.map((stat, index) => (
             <div key={index} className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
@@ -129,9 +128,7 @@ const Dashboard = () => {
           ))}
         </div>
 
-        {/* Charts Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          {/* Sales Performance */}
           <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-6">
               <div>
@@ -191,7 +188,6 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Weekly Revenue */}
           <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-6">
               <div>
@@ -231,9 +227,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Analytics & Data Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-          {/* Traffic Sources */}
           <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-6">
               <div>
@@ -264,7 +258,6 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Device Analytics */}
           <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-6">
               <div>
@@ -312,7 +305,6 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Recent Orders */}
           <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-6">
               <div>
@@ -351,9 +343,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Activity & Performance */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Recent Activity */}
           <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-6">
               <div>
@@ -386,7 +376,6 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Performance Summary */}
           <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-6">
               <div>

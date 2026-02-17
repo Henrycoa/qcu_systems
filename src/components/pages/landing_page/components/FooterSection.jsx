@@ -37,10 +37,19 @@ const FooterSection = ({ onApplyNow, scrollToSection }) => {
               The official digital gateway for Quezon City Health Department services. Streamlining bureaucracy through innovation.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#243ead] transition-all group">
+              {/* Pinalitan ang href="#" ng official links o "/" */}
+              <a 
+                href="https://facebook.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#243ead] transition-all group"
+              >
                 <Facebook className="w-5 h-5 text-gray-400 group-hover:text-white" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#243ead] transition-all group">
+              <a 
+                href="/" 
+                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#243ead] transition-all group"
+              >
                 <Globe className="w-5 h-5 text-gray-400 group-hover:text-white" />
               </a>
             </div>

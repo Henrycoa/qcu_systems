@@ -4,7 +4,9 @@ import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [events, setEvents] = useState([
+  
+  // Tinanggal ang setEvents dahil hindi ginagamit sa current code
+  const [events] = useState([
     { id: 1, date: new Date(2024, 11, 25), title: 'Team Meeting', color: 'bg-blue-500' },
     { id: 2, date: new Date(2024, 11, 28), title: 'Product Launch', color: 'bg-purple-500' },
     { id: 3, date: new Date(2024, 11, 30), title: 'Client Review', color: 'bg-orange-500' },

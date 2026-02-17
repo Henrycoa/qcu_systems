@@ -18,9 +18,9 @@ const PermitCard = ({ type, onClick }) => {
       data-aos="fade-up"
       data-aos-delay={type.aosDelay}
     >
-      <a 
-        className="no-underline block" 
-        href="#" 
+      {/* Ginawang button instead of anchor tag para iwas sa error ng href="#" */}
+      <button 
+        className="w-full text-left no-underline block" 
         onClick={(e) => {
           e.preventDefault();
           onClick();
@@ -40,7 +40,6 @@ const PermitCard = ({ type, onClick }) => {
           {/* Icon Container: Forced to fill 50% of the box height (95px) */}
           <div className="relative w-full h-[95px] flex items-center justify-center z-10 mt-2">
             <div className="w-full h-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-              {/* React.cloneElement para i-force ang size sa 100% ng 95px area */}
               {React.cloneElement(type.icon, { 
                 size: "100%", 
                 strokeWidth: 1.5,
@@ -58,7 +57,7 @@ const PermitCard = ({ type, onClick }) => {
           </div>
 
         </div>
-      </a>
+      </button>
     </div>
   );
 };
@@ -66,7 +65,6 @@ const PermitCard = ({ type, onClick }) => {
 const ServicesSection = forwardRef(({ onApplyNow, scrollToSection }, ref) => {
   const [hiddenCardsVisible, setHiddenCardsVisible] = useState(false);
 
-  // Palitan natin ng Lucide Icons para sigurado ang scaling sa 100%
   const permitTypes = [
     { id: 'health', label: 'Health', icon: <HeartPulse />, isPopular: true, aosDelay: 100 },
     { id: 'sanitary', label: 'Sanitary', icon: <Droplets />, isPopular: false, aosDelay: 200 },
@@ -84,8 +82,8 @@ const ServicesSection = forwardRef(({ onApplyNow, scrollToSection }, ref) => {
     <section ref={ref} className="py-16 bg-gray-50/30" data-aos="fade-up">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="font-['Poppins',_sans-serif] text-3xl md:text-4xl font-extrabold text-[#243ead] mb-4">
-            GET YOUR PERMITS & CERTIFICATES
+          <h2 className="font-['Poppins',_sans-serif] text-3xl md:text-4xl font-extrabold text-[#243ead] mb-4 uppercase">
+            Get Your Permits & Certificates
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Official Quezon City Government services made faster and easier for every citizen.
@@ -140,12 +138,18 @@ const ServicesSection = forwardRef(({ onApplyNow, scrollToSection }, ref) => {
             <h3 className="text-2xl md:text-3xl font-bold mb-4">Need Assistance?</h3>
             <p className="text-blue-100 mb-8 text-lg">Our representatives are ready to help you with your applications.</p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <button onClick={() => scrollToSection('faq')} className="px-8 py-3 bg-white text-[#243ead] font-bold rounded-xl hover:bg-blue-50 transition-all">
+              <button 
+                onClick={() => scrollToSection('faq')} 
+                className="px-8 py-3 bg-white text-[#243ead] font-bold rounded-xl hover:bg-blue-50 transition-all"
+              >
                 View FAQs
               </button>
-              <button onClick={() => window.location.href = 'tel:0289032126'} className="px-8 py-3 bg-blue-500 text-white font-bold rounded-xl hover:bg-blue-600 transition-all">
+              <a 
+                href="tel:0289032126" 
+                className="px-8 py-3 bg-blue-500 text-white font-bold rounded-xl hover:bg-blue-600 transition-all inline-block"
+              >
                 Call Support
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -155,4 +159,4 @@ const ServicesSection = forwardRef(({ onApplyNow, scrollToSection }, ref) => {
 });
 
 ServicesSection.displayName = 'ServicesSection';
-export default ServicesSection;
+export default ServicesSection; 

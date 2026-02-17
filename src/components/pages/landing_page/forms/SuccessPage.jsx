@@ -1,7 +1,10 @@
 import React from 'react';
+// Tinanggal ang mga unused icons para sa malinis na build
 import { 
-  CheckCircle, FileText, Home, Printer, Share2, 
-  CreditCard, Video, Download, Clock 
+  CheckCircle, 
+  Home, 
+  Printer, 
+  Clock 
 } from 'lucide-react';
 
 const SuccessPage = ({ referenceNumber, formData, onBackToHome }) => {
@@ -39,7 +42,7 @@ const SuccessPage = ({ referenceNumber, formData, onBackToHome }) => {
                   </div>
                 </div>
 
-                {/* NEXT STEPS TIMELINE - Critical for QC Process */}
+                {/* NEXT STEPS TIMELINE */}
                 <div className="text-left mb-10 space-y-4">
                   <h3 className="text-xs font-black uppercase tracking-widest text-gray-400 ml-2">What happens next?</h3>
                   <div className="space-y-3">
@@ -61,11 +64,11 @@ const SuccessPage = ({ referenceNumber, formData, onBackToHome }) => {
                 {/* Quick Info */}
                 <div className="grid grid-cols-2 gap-4 mb-10 text-left">
                   <div className="p-4 rounded-2xl bg-gray-50 border border-gray-100">
-                    <p className="text-[10px] font-black uppercase text-gray-400 mb-1 text-[8px]">Applicant</p>
+                    <p className="text-[10px] font-black uppercase text-gray-400 mb-1">Applicant</p>
                     <p className="font-bold text-gray-800 text-sm truncate">{formData.firstName} {formData.lastName}</p>
                   </div>
                   <div className="p-4 rounded-2xl bg-gray-50 border border-gray-100">
-                    <p className="text-[10px] font-black uppercase text-gray-400 mb-1 text-[8px]">Status</p>
+                    <p className="text-[10px] font-black uppercase text-gray-400 mb-1">Status</p>
                     <p className="font-bold text-amber-600 text-sm flex items-center gap-1">
                       <Clock className="w-3 h-3" /> Pending
                     </p>
