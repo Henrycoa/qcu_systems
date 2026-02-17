@@ -1,4 +1,3 @@
-// src/components/Sidebar.jsx
 import React, { useState } from 'react';
 import { 
   Home, 
@@ -17,9 +16,8 @@ import {
   ShoppingCart,
   BarChart2,
   TrendingUp,
-  Package,
   Briefcase,
-  LayoutPanelLeft,
+  Package,
   Type,
   Radio,
   SlidersHorizontal,
@@ -158,7 +156,6 @@ const Sidebar = ({ isVisible, onNavigate, activePage }) => {
       `}
       style={{ flexShrink: 0 }}
     >
-      {/* Logo Section */}
       <div className="p-6 flex items-center gap-3">
         <div className="relative w-10 h-10 flex flex-wrap content-start">
           <div className="w-5 h-8 bg-[#1a56db] rounded-tl-lg rounded-bl-lg"></div>
@@ -168,7 +165,6 @@ const Sidebar = ({ isVisible, onNavigate, activePage }) => {
         <span className="text-2xl font-bold text-[#2a3547]">Flexy</span>
       </div>
 
-      {/* Navigation Groups */}
       <nav className="flex-1 px-4 pb-4">
         {menuGroups.map((group, gIdx) => (
           <div key={gIdx} className="mb-6">
@@ -179,7 +175,6 @@ const Sidebar = ({ isVisible, onNavigate, activePage }) => {
             <div className="space-y-1">
               {group.items.map((item, iIdx) => (
                 <React.Fragment key={iIdx}>
-                  {/* Main Menu Item */}
                   <button
                     onClick={() => {
                       if (item.hasSub) {
@@ -231,7 +226,6 @@ const Sidebar = ({ isVisible, onNavigate, activePage }) => {
                     </div>
                   </button>
 
-                  {/* Sub Menu Items */}
                   {item.hasSub && expandedMenus[item.name] && item.subItems && (
                     <div className="ml-9 mt-1 mb-2 space-y-1">
                       {item.subItems.map((subItem, subIdx) => (
@@ -259,16 +253,6 @@ const Sidebar = ({ isVisible, onNavigate, activePage }) => {
                               {subItem.name}
                             </span>
                           </div>
-
-                          {subItem.isPro && (
-                            <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold border ${
-                              activePage === subItem.page
-                              ? 'bg-[#1e4db7] text-white border-[#1e4db7]' 
-                              : 'bg-[#eef2ff] border-[#e0e7ff] text-[#1e4db7]'
-                            }`}>
-                              Pro
-                            </span>
-                          )}
                         </button>
                       ))}
                     </div>
@@ -279,23 +263,6 @@ const Sidebar = ({ isVisible, onNavigate, activePage }) => {
           </div>
         ))}
       </nav>
-
-      {/* Custom Scrollbar Styles */}
-      <style jsx>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 5px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: #e5e7eb;
-          border-radius: 3px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #d1d5db;
-        }
-      `}</style>
     </div>
   );
 };
