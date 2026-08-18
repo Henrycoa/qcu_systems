@@ -5,11 +5,11 @@ import {
   User, Building2, HeartPulse, UtensilsCrossed, 
   Droplets, RefreshCw, Stethoscope, GraduationCap, 
   Sparkles, ArrowRight, Shield, FileText, Calendar,
-  MapPin, Award, HelpCircle, Phone,
+  MapPin, HelpCircle, Phone,
   Menu, ChevronUp, ArrowLeft,
   CheckCircle, AlertCircle, Upload, Mail,
   ListChecks, FileCheck, Clock, Check,
-  File, XCircle, BookOpen, Trophy, Download,
+  File, XCircle, BookOpen, Trophy, 
   RotateCcw, ChevronDown, ChevronRight, Table
 } from 'lucide-react';
 
@@ -24,7 +24,7 @@ const Dashboard = ({ user, onLogout }) => {
   const [selectedService, setSelectedService] = useState(null);
   const [showApplication, setShowApplication] = useState(false);
   const [hiddenCardsVisible, setHiddenCardsVisible] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [setMobileMenuOpen] = useState(false);
   const [step, setStep] = useState(1);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [referenceNumber, setReferenceNumber] = useState('');
@@ -75,7 +75,7 @@ const Dashboard = ({ user, onLogout }) => {
   });
 
   // ✅ SCROLL STATE
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [setIsScrolled] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   // ✅ Check application status on load
@@ -92,7 +92,8 @@ const Dashboard = ({ user, onLogout }) => {
         console.log('🔍 Checking application status for user...');
         setLoadingApplications(true);
         
-        const response = await fetch('http://localhost/in%20jsesus%20name/backend/auth-file/get-my-applications.php', {
+        // ✅ INFINITYFREE URL
+        const response = await fetch('https://qcu.infinityfreeapp.com/backend/auth-file/get-my-applications.php', {
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
@@ -143,7 +144,7 @@ const Dashboard = ({ user, onLogout }) => {
   const fetchExamQuestions = async () => {
     setExamLoading(true);
     try {
-      const response = await fetch('http://localhost/in%20jsesus%20name/backend/auth-file/get-exam-questions.php', {
+      const response = await fetch('https://qcu.infinityfreeapp.com/backend/auth-file/get-exam-questions.php', {
         credentials: 'include'
       });
       const result = await response.json();
@@ -160,7 +161,8 @@ const Dashboard = ({ user, onLogout }) => {
   // ✅ Fetch certificate
   const fetchCertificate = async (applicationId) => {
     try {
-      const response = await fetch(`http://localhost/in%20jsesus%20name/backend/auth-file/get-certificate.php?application_id=${applicationId}`, {
+      // ✅ INFINITYFREE URL
+      const response = await fetch(`https://qcu.infinityfreeapp.com/backend/auth-file/get-certificate.php?application_id=${applicationId}`, {
         credentials: 'include'
       });
       const result = await response.json();
@@ -186,7 +188,8 @@ const Dashboard = ({ user, onLogout }) => {
     }
 
     try {
-      const response = await fetch('http://localhost/in%20jsesus%20name/backend/auth-file/submit-exam.php', {
+      // ✅ INFINITYFREE URL
+      const response = await fetch('https://qcu.infinityfreeapp.com/backend/auth-file/submit-exam.php', {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -212,7 +215,8 @@ const Dashboard = ({ user, onLogout }) => {
   // ✅ Generate certificate
   const generateCertificate = async (score) => {
     try {
-      const response = await fetch('http://localhost/in%20jsesus%20name/backend/auth-file/generate-certificate.php', {
+      // ✅ INFINITYFREE URL
+      const response = await fetch('https://qcu.infinityfreeapp.com/backend/auth-file/generate-certificate.php', {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -584,7 +588,8 @@ const Dashboard = ({ user, onLogout }) => {
       if (uploadedFiles.idPicture) formDataToSend.append('id_picture', uploadedFiles.idPicture);
       if (uploadedFiles.cedula) formDataToSend.append('cedula', uploadedFiles.cedula);
 
-      const url = 'http://localhost/in%20jsesus%20name/backend/auth-file/submit-application.php';
+      // ✅ INFINITYFREE URL
+      const url = 'https://qcu.infinityfreeapp.com/backend/auth-file/submit-application.php';
       console.log('📤 Submitting application with files to:', url);
 
       const response = await fetch(url, {
@@ -630,7 +635,8 @@ const Dashboard = ({ user, onLogout }) => {
 
   // --- LOGOUT HANDLER ---
   const handleLogout = () => {
-    fetch('http://localhost/in%20jsesus%20name/backend/auth-file/logout.php', {
+    // ✅ INFINITYFREE URL
+    fetch('https://qcu.infinityfreeapp.com/backend/auth-file/logout.php', {
       method: 'POST',
       credentials: 'include'
     }).catch(() => {});

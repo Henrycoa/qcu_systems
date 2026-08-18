@@ -38,12 +38,13 @@ const Login = ({ onLoginSuccess, onBack, onSwitchToRegister }) => {
 
   const handleLogin = async (username, password) => {
     try {
-      const url = 'http://localhost/in%20jsesus%20name/backend/auth-file/login.php';
+      // ✅ INFINITYFREE URL - PALITAN MO ITO
+      const url = 'https://qcu.infinityfreeapp.com/backend/auth-file/login.php';
       console.log('🔄 Attempting login to:', url);
       
       const response = await fetch(url, {
         method: 'POST',
-        credentials: 'include', // ✅ IMPORTANT - para ma-save ang session cookie
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -69,7 +70,7 @@ const Login = ({ onLoginSuccess, onBack, onSwitchToRegister }) => {
       console.error('❌ Login error:', error);
       return {
         success: false,
-        error: 'Cannot connect to server. Make sure XAMPP is running!'
+        error: 'Cannot connect to server. Please check your internet connection.'
       };
     }
   };
@@ -99,18 +100,15 @@ const Login = ({ onLoginSuccess, onBack, onSwitchToRegister }) => {
       if (result.success) {
         const user = result.user;
         
-        // ✅ Save user data to localStorage
         localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('user_type', user.user_type);
         
         setLoginMessage('✅ Login successful! Redirecting...');
         
-        // ✅ Call callback if provided
         if (onLoginSuccess) {
           onLoginSuccess(user);
         }
         
-        // ✅ REDIRECT BASED ON USER TYPE
         setTimeout(() => {
           if (user.user_type === 'admin' || user.user_type === 'staff') {
             console.log('🔵 Redirecting to Admin Dashboard');

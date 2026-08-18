@@ -1,6 +1,6 @@
 // src/components/pages/ExamResultView.jsx
 import React from 'react';
-import { Trophy, FileCheck, Award } from 'lucide-react';
+import { Trophy, FileCheck} from 'lucide-react';
 
 const ExamResultView = ({ examScore, totalQuestions, onViewCertificate }) => {
   const passed = examScore >= 5; // 5/10 to pass

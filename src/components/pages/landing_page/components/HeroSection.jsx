@@ -1,5 +1,5 @@
 import React, { useState, useEffect, forwardRef } from 'react';
-import { ArrowRight, Mouse } from 'lucide-react';
+import { ArrowRight, } from 'lucide-react';
 
 const HeroSlider = forwardRef(({ onApplyNow, scrollToSection }, ref) => {
   const [currentSlide, setCurrentSlide] = useState(0);
