@@ -13,14 +13,17 @@ const CTASection = forwardRef(({ onApplyNow, scrollToSection }, ref) => {
 
       <div className="container mx-auto px-4 text-center relative z-10">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tight" data-aos="fade-up">
+          {/* Idinagdag: data-aos-once="true" */}
+          <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tight" data-aos="fade-up" data-aos-once="true">
             Ready to Get Your Permit?
           </h2>
-          <p className="text-xl text-blue-100/90 mb-10 font-medium" data-aos="fade-up" data-aos-delay="100">
+          {/* Idinagdag: data-aos-once="true" */}
+          <p className="text-xl text-blue-100/90 mb-10 font-medium" data-aos="fade-up" data-aos-delay="100" data-aos-once="true">
             Join thousands of satisfied applicants who've streamlined their permit process
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-5 justify-center" data-aos="fade-up" data-aos-delay="200">
+          {/* Idinagdag: data-aos-once="true" */}
+          <div className="flex flex-col sm:flex-row gap-5 justify-center" data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
             <button
               onClick={() => onApplyNow('health')}
               /* BINAGO: text-blue-700 -> text-[#243ead] */
@@ -43,7 +46,8 @@ const CTASection = forwardRef(({ onApplyNow, scrollToSection }, ref) => {
             </button>
           </div>
           
-          <div className="mt-10 flex items-center justify-center gap-2 text-blue-100/80 font-bold" data-aos="fade-up" data-aos-delay="300">
+          {/* Idinagdag: data-aos-once="true" */}
+          <div className="mt-10 flex items-center justify-center gap-2 text-blue-100/80 font-bold" data-aos="fade-up" data-aos-delay="300" data-aos-once="true">
             <PhoneCall className="w-5 h-5" />
             <p className="text-sm">
               Need assistance? Call (02) 8988-4242 • Mon-Fri 8AM-5PM

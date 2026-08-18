@@ -48,7 +48,8 @@ const RequirementsSection = forwardRef(({ onApplyNow }, ref) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start max-w-7xl mx-auto">
           
           {/* Left Column: Requirements */}
-          <div data-aos="fade-right">
+          {/* Idinagdag: data-aos-once="true" */}
+          <div data-aos="fade-right" data-aos-once="true">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#243ead]/10 text-[#243ead] text-xs font-black uppercase tracking-widest mb-6">
               Checklist
             </div>
@@ -66,6 +67,7 @@ const RequirementsSection = forwardRef(({ onApplyNow }, ref) => {
                   className="flex items-center gap-4 bg-white p-5 rounded-2xl border border-blue-50 shadow-sm hover:shadow-md hover:border-[#243ead]/30 transition-all group cursor-default"
                   data-aos="fade-up"
                   data-aos-delay={index * 50}
+                  data-aos-once="true" // Idagdag: data-aos-once="true"
                 >
                   <div className="w-10 h-10 rounded-xl bg-[#243ead] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#243ead]/20 group-hover:scale-110 transition-transform">
                     <span className="text-white font-black text-sm">{index + 1}</span>
@@ -77,9 +79,11 @@ const RequirementsSection = forwardRef(({ onApplyNow }, ref) => {
           </div>
           
           {/* Right Column: Process Card */}
+          {/* Idinagdag: data-aos-once="true" */}
           <div 
             className="relative bg-white rounded-[2.5rem] shadow-[0_30px_60px_rgba(36,62,173,0.1)] border border-blue-50 p-8 md:p-12" 
             data-aos="fade-left"
+            data-aos-once="true"
           >
             {/* Decorative Header for the Card */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-2 bg-[#243ead] rounded-b-full"></div>
@@ -98,6 +102,7 @@ const RequirementsSection = forwardRef(({ onApplyNow }, ref) => {
                   className="flex items-start gap-6 group relative z-10"
                   data-aos="fade-up"
                   data-aos-delay={idx * 100}
+                  data-aos-once="true" // Idagdag: data-aos-once="true"
                 >
                   <div className="w-12 h-12 rounded-2xl bg-[#243ead] flex items-center justify-center text-white shadow-xl group-hover:rotate-6 transition-all duration-300">
                     {step.icon}

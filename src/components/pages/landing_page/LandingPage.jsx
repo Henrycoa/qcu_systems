@@ -1,6 +1,9 @@
 // src/components/pages/landing_page/LandingPage.jsx
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronUp } from 'lucide-react'; 
+import { ChevronUp } from 'lucide-react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 import Navigation from './components/Navigation';
 import HeroSection from './components/HeroSection';
 import ServicesSection from './components/ServicesSection';
@@ -10,15 +13,16 @@ import TestimonialsSection from './components/TestimonialsSection';
 import FAQSection from './components/FAQSection';
 import CTASection from './components/CTASection';
 import FooterSection from './components/FooterSection';
-import ApplicationForm from './forms/ApplicationForm';
-import SuccessPage from './forms/SuccessPage';
+import Register from './components/forms/Register';
+import Login from './components/forms/Login';
+import ApplicationForm from './components/forms/ApplicationForm';
+import SuccessPage from './components/forms/SuccessPage';
 import ChatSupport from './components/ChatSupport';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
-/**
- * 1. HOOK DEFINITION
- */
+// ✅ Import Dashboard (User) and AdminDashboard
+import Dashboard from '../Dashboard';
+import AdminDashboard from './components/pages/admin/AdminDashboard';
+
 const useWaveAnimation = () => {
   const [waveActive, setWaveActive] = useState(false);
   const sectionRefs = useRef({});
@@ -56,20 +60,37 @@ const useWaveAnimation = () => {
   return { waveActive, triggerWaveAnimation, sectionRefs };
 };
 
-/**
- * 2. MAIN COMPONENT
- */
 const QCHealthPermitLanding = () => {
   const [showForm, setShowForm] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const [applicationSubmitted, setApplicationSubmitted] = useState(false);
   const [selectedPermit, setSelectedPermit] = useState('health');
-  
-  // FIX: Gawing null ang default para madaling i-check kung may laman na
   const [formData, setFormData] = useState(null); 
   const [referenceNumber, setReferenceNumber] = useState('');
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+  const [userType, setUserType] = useState(null);
 
   const { waveActive, triggerWaveAnimation, sectionRefs } = useWaveAnimation();
+
+  // Check if user is logged in from localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+        setUserType(parsedUser.user_type || 'user');
+        setIsLoggedIn(true);
+      } catch (e) {
+        console.error('Error parsing user data:', e);
+        localStorage.removeItem('user');
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,19 +104,60 @@ const QCHealthPermitLanding = () => {
     AOS.init({ duration: 1000, once: false, mirror: true, offset: 100 });
   }, []);
 
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+    setUserType(userData.user_type || 'user');
+    setIsLoggedIn(true);
+    localStorage.setItem('user', JSON.stringify(userData));
+    localStorage.setItem('user_type', userData.user_type);
+    setShowRegister(false);
+    setShowLogin(false);
+    setShowForm(false);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUser(null);
+    setUserType(null);
+    localStorage.removeItem('user');
+    localStorage.removeItem('user_type');
+  };
+
   const handleApplyNow = (permitType = 'health') => {
     setSelectedPermit(permitType);
     setShowForm(true);
+    setShowRegister(false);
+    setShowLogin(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleRegisterNow = () => {
+    setShowRegister(true);
+    setShowForm(false);
+    setShowLogin(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleLoginNow = () => {
+    setShowLogin(true);
+    setShowRegister(false);
+    setShowForm(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBackToHome = () => {
     setApplicationSubmitted(false);
     setShowForm(false);
-    setFormData(null); // Reset para malinis ang state
+    setShowRegister(false);
+    setShowLogin(false);
+    setFormData(null);
   };
 
-  // FIX: Siguraduhin na ang data ay hindi null bago mag-switch ng view
+  const handleRegisterSuccess = () => {
+    setShowRegister(false);
+    setShowLogin(true);
+  };
+
   const handleSubmitSuccess = (refNum, data) => {
     if (data) {
       setReferenceNumber(refNum);
@@ -108,9 +170,45 @@ const QCHealthPermitLanding = () => {
   const scrollToSection = (sectionId) => triggerWaveAnimation(sectionId);
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // --- RENDERING LOGIC ---
+  // --- RENDERING ---
 
-  // SUCCESS VIEW (With safety check)
+  // ✅ LOGGED IN - Check user type
+  if (isLoggedIn && user) {
+    if (userType === 'admin' || userType === 'staff') {
+      return <AdminDashboard user={user} onLogout={handleLogout} />;
+    }
+    return <Dashboard user={user} onLogout={handleLogout} />;
+  }
+
+  // ✅ LOGIN VIEW
+  if (showLogin) {
+    return (
+      <>
+        <Login 
+          onLoginSuccess={handleLoginSuccess}
+          onBack={handleBackToHome}
+          onSwitchToRegister={handleRegisterNow}
+        />
+        <ChatSupport />
+      </>
+    );
+  }
+
+  // ✅ REGISTER VIEW
+  if (showRegister) {
+    return (
+      <>
+        <Register 
+          onRegisterSuccess={handleRegisterSuccess}
+          onBack={handleBackToHome}
+          onSwitchToLogin={handleLoginNow}
+        />
+        <ChatSupport />
+      </>
+    );
+  }
+
+  // ✅ SUCCESS VIEW
   if (applicationSubmitted && formData) {
     return (
       <>
@@ -124,7 +222,7 @@ const QCHealthPermitLanding = () => {
     );
   }
 
-  // FORM VIEW
+  // ✅ FORM VIEW
   if (showForm) {
     return (
       <>
@@ -138,7 +236,7 @@ const QCHealthPermitLanding = () => {
     );
   }
 
-  // LANDING PAGE VIEW
+  // ✅ LANDING PAGE VIEW
   return (
     <div className="min-h-screen bg-white overflow-hidden relative selection:bg-blue-100">
       <button
@@ -158,16 +256,40 @@ const QCHealthPermitLanding = () => {
 
       <ChatSupport />
 
-      <Navigation onApplyNow={() => handleApplyNow('health')} scrollToSection={scrollToSection} />
+      <Navigation 
+        onApplyNow={() => handleApplyNow('health')} 
+        onRegisterNow={handleRegisterNow}
+        onLoginNow={handleLoginNow}
+        scrollToSection={scrollToSection}
+      />
       
       <main>
-        <div ref={el => sectionRefs.current.hero = el}><HeroSection onApplyNow={handleApplyNow} scrollToSection={scrollToSection} /></div>
-        <div ref={el => sectionRefs.current.services = el}><ServicesSection onApplyNow={handleApplyNow} scrollToSection={scrollToSection} /></div>
-        <div ref={el => sectionRefs.current.features = el}><FeaturesSection scrollToSection={scrollToSection} /></div>
-        <div ref={el => sectionRefs.current.requirements = el}><RequirementsSection onApplyNow={handleApplyNow} scrollToSection={scrollToSection} /></div>
-        <div ref={el => sectionRefs.current.testimonials = el}><TestimonialsSection scrollToSection={scrollToSection} /></div>
-        <div ref={el => sectionRefs.current.faq = el}><FAQSection onApplyNow={handleApplyNow} /></div>
-        <div ref={el => sectionRefs.current.cta = el}><CTASection onApplyNow={handleApplyNow} scrollToSection={scrollToSection} /></div>
+        <div ref={el => sectionRefs.current.hero = el}>
+          <HeroSection 
+            onApplyNow={handleApplyNow} 
+            onRegisterNow={handleRegisterNow}
+            onLoginNow={handleLoginNow}
+            scrollToSection={scrollToSection} 
+          />
+        </div>
+        <div ref={el => sectionRefs.current.services = el}>
+          <ServicesSection onApplyNow={handleApplyNow} scrollToSection={scrollToSection} />
+        </div>
+        <div ref={el => sectionRefs.current.features = el}>
+          <FeaturesSection scrollToSection={scrollToSection} />
+        </div>
+        <div ref={el => sectionRefs.current.requirements = el}>
+          <RequirementsSection onApplyNow={handleApplyNow} scrollToSection={scrollToSection} />
+        </div>
+        <div ref={el => sectionRefs.current.testimonials = el}>
+          <TestimonialsSection scrollToSection={scrollToSection} />
+        </div>
+        <div ref={el => sectionRefs.current.faq = el}>
+          <FAQSection onApplyNow={handleApplyNow} />
+        </div>
+        <div ref={el => sectionRefs.current.cta = el}>
+          <CTASection onApplyNow={handleApplyNow} scrollToSection={scrollToSection} />
+        </div>
       </main>
 
       <FooterSection onApplyNow={handleApplyNow} scrollToSection={scrollToSection} />

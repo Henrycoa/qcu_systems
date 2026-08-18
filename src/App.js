@@ -1,4 +1,4 @@
-// App.js (UPDATED VERSION)
+// App.js - ONLY LOGIN REMOVED
 import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
@@ -7,7 +7,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import Login from "./components/pages/Login.jsx";
+// ❌ REMOVED: import Login from "./components/pages/Login.jsx";
 import Dashboard from "./components/pages/Dashboard.jsx";
 import Calendar from "./components/pages/calendar.jsx";
 import QCHealthPermitLanding from "./components/pages/landing_page/LandingPage.jsx";
@@ -103,7 +103,7 @@ function App() {
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/calendar" element={<Calendar />} />
                   <Route path="/" element={<Navigate to="/dashboard" />} />
-                  <Route path="/login" element={<Navigate to="/dashboard" />} />
+                  {/* ✅ REMOVED: /login route */}
 
                   <Route path="/profile" element={<div>Profile Page</div>} />
                   <Route path="/tasks" element={<div>Tasks Page</div>} />
@@ -129,10 +129,7 @@ function App() {
           // UNAUTHENTICATED ROUTES (Public Pages)
           <Routes>
             <Route path="/" element={<QCHealthPermitLanding />} />
-            <Route
-              path="/login"
-              element={<Login onLoginSuccess={handleLoginSuccess} />}
-            />
+            {/* ❌ REMOVED: Login route */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         )}

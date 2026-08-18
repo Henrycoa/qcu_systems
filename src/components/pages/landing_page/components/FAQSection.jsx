@@ -30,7 +30,8 @@ const FAQSection = forwardRef(({ onApplyNow }, ref) => {
         <div className="max-w-5xl mx-auto">
           
           {/* Section Header */}
-          <div className="text-center mb-20" data-aos="fade-up">
+          {/* Idinagdag: data-aos-once="true" */}
+          <div className="text-center mb-20" data-aos="fade-up" data-aos-once="true">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#243ead]/10 text-[#243ead] text-xs font-black uppercase tracking-widest mb-4">
               <HelpCircle className="w-4 h-4" />
               Support Center
@@ -51,6 +52,7 @@ const FAQSection = forwardRef(({ onApplyNow }, ref) => {
                 className="bg-white rounded-[2rem] p-8 border border-transparent hover:border-[#243ead]/20 hover:shadow-[0_20px_40px_rgba(36,62,173,0.05)] transition-all duration-300 cursor-pointer group"
                 data-aos="fade-up"
                 data-aos-delay={index * 50}
+                data-aos-once="true" // Idagdag: data-aos-once="true"
                 onClick={() => onApplyNow('health')}
               >
                 <div className="flex items-start gap-4">
@@ -71,9 +73,11 @@ const FAQSection = forwardRef(({ onApplyNow }, ref) => {
           </div>
 
           {/* Contact Support CTA */}
+          {/* Idinagdag: data-aos-once="true" */}
           <div 
             className="mt-16 p-8 rounded-[2.5rem] bg-[#243ead] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_20px_40px_rgba(36,62,173,0.3)]"
             data-aos="zoom-in"
+            data-aos-once="true"
           >
             <div className="flex items-center gap-6 text-center md:text-left">
               <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center">

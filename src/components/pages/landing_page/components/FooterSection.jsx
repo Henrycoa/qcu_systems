@@ -19,7 +19,8 @@ const FooterSection = ({ onApplyNow, scrollToSection }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           
           {/* Brand Identity */}
-          <div data-aos="fade-right">
+          {/* Idinagdag: data-aos-once="true" */}
+          <div data-aos="fade-right" data-aos-once="true">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-12 h-12 rounded-2xl bg-[#243ead] flex items-center justify-center shadow-lg shadow-[#243ead]/20">
                 <FileText className="w-6 h-6 text-white" />
@@ -37,7 +38,6 @@ const FooterSection = ({ onApplyNow, scrollToSection }) => {
               The official digital gateway for Quezon City Health Department services. Streamlining bureaucracy through innovation.
             </p>
             <div className="flex gap-4">
-              {/* Pinalitan ang href="#" ng official links o "/" */}
               <a 
                 href="https://facebook.com" 
                 target="_blank" 
@@ -56,7 +56,8 @@ const FooterSection = ({ onApplyNow, scrollToSection }) => {
           </div>
           
           {/* Quick Links / Services */}
-          <div data-aos="fade-up" data-aos-delay="100">
+          {/* Idinagdag: data-aos-once="true" */}
+          <div data-aos="fade-up" data-aos-delay="100" data-aos-once="true">
             <h4 className="font-black text-sm uppercase tracking-[0.2em] mb-8 text-white">Services</h4>
             <ul className="space-y-4">
               {permitTypes.map((type) => (
@@ -74,7 +75,8 @@ const FooterSection = ({ onApplyNow, scrollToSection }) => {
           </div>
           
           {/* Contact Information */}
-          <div data-aos="fade-up" data-aos-delay="200">
+          {/* Idinagdag: data-aos-once="true" */}
+          <div data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
             <h4 className="font-black text-sm uppercase tracking-[0.2em] mb-8 text-white">Contact Us</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-gray-400 group cursor-pointer" onClick={() => scrollToSection('faq')}>
@@ -99,7 +101,8 @@ const FooterSection = ({ onApplyNow, scrollToSection }) => {
           </div>
           
           {/* Security & Hours */}
-          <div data-aos="fade-left" data-aos-delay="300">
+          {/* Idinagdag: data-aos-once="true" */}
+          <div data-aos="fade-left" data-aos-delay="300" data-aos-once="true">
             <h4 className="font-black text-sm uppercase tracking-[0.2em] mb-8 text-white">Data Privacy</h4>
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
               <div className="flex items-center gap-3 mb-4">
