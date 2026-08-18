@@ -2,16 +2,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  LogOut, User, Building2, HeartPulse, UtensilsCrossed, 
+  User, Building2, HeartPulse, UtensilsCrossed, 
   Droplets, RefreshCw, Stethoscope, GraduationCap, 
   Sparkles, ArrowRight, Shield, FileText, Calendar,
-  MapPin, ClipboardCheck, Award, Star, HelpCircle, Phone,
-  Menu, X, Home, Settings, Bell, ChevronUp, ArrowLeft,
-  CheckCircle, AlertCircle, Upload, Briefcase, Mail,
-  LayoutDashboard, ListChecks, FileCheck, Send, UserCheck,
-  Clock, Check, AlertTriangle, Circle, File, Image, XCircle,
-  BookOpen, Clipboard, Trophy, Download, RotateCcw, 
-  ChevronDown, ChevronRight, MoreVertical, Table
+  MapPin, Award, HelpCircle, Phone,
+  Menu, ChevronUp, ArrowLeft,
+  CheckCircle, AlertCircle, Upload, Mail,
+  ListChecks, FileCheck, Clock, Check,
+  File, XCircle, BookOpen, Trophy, Download,
+  RotateCcw, ChevronDown, ChevronRight, Table
 } from 'lucide-react';
 
 // ✅ Import separated components

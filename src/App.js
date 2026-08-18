@@ -7,7 +7,6 @@ import {
   Navigate,
 } from "react-router-dom";
 
-// ❌ REMOVED: import Login from "./components/pages/Login.jsx";
 import Dashboard from "./components/pages/Dashboard.jsx";
 import Calendar from "./components/pages/calendar.jsx";
 import QCHealthPermitLanding from "./components/pages/landing_page/LandingPage.jsx";
@@ -43,12 +42,7 @@ function App() {
     setSidebarVisible(!sidebarVisible);
   };
 
-  const handleLoginSuccess = (userData, csrfToken) => {
-    setUser(userData);
-    setIsAuthenticated(true);
-    localStorage.setItem("user", JSON.stringify(userData));
-    localStorage.setItem("csrfToken", csrfToken);
-  };
+  // REMOVED: handleLoginSuccess function (no longer needed)
 
   const handleLogout = () => {
     setIsAuthenticated(false);
@@ -76,7 +70,6 @@ function App() {
     <Router>
       <div className="App">
         {isAuthenticated ? (
-          // AUTHENTICATED ROUTES (Dashboard, etc.)
           <div className="flex min-h-screen bg-gray-50">
             <Sidebar
               isVisible={sidebarVisible}
@@ -103,8 +96,6 @@ function App() {
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/calendar" element={<Calendar />} />
                   <Route path="/" element={<Navigate to="/dashboard" />} />
-                  {/* ✅ REMOVED: /login route */}
-
                   <Route path="/profile" element={<div>Profile Page</div>} />
                   <Route path="/tasks" element={<div>Tasks Page</div>} />
                   <Route path="/forms" element={<div>Forms Page</div>} />
@@ -115,8 +106,6 @@ function App() {
                   <Route path="/invoice" element={<div>Invoice Page</div>} />
                   <Route path="/charts" element={<div>Charts Page</div>} />
                   <Route path="/auth" element={<div>Auth Page</div>} />
-
-                  {/* ADDED: Landing Page accessible even when authenticated */}
                   <Route
                     path="/health-permit"
                     element={<QCHealthPermitLanding />}
@@ -126,10 +115,8 @@ function App() {
             </div>
           </div>
         ) : (
-          // UNAUTHENTICATED ROUTES (Public Pages)
           <Routes>
             <Route path="/" element={<QCHealthPermitLanding />} />
-            {/* ❌ REMOVED: Login route */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         )}

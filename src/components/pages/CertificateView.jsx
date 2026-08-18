@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Download, FileCheck, Award, Calendar, MapPin, User, Mail } from 'lucide-react';
+import { Shield, Download, FileCheck, Award } from 'lucide-react';
 
 const CertificateView = ({ certificateData, onBack, onDownload }) => {
   if (!certificateData) {
