@@ -8,7 +8,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "backend/social-services-app/package.json",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "build"
@@ -17,8 +21,12 @@
   ],
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "/backend/social-services-app/$1"
     }
   ]
 }
