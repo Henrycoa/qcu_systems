@@ -3,6 +3,28 @@
     "env": {
       "DISABLE_ESLINT_PLUGIN": "true",
       "CI": "false"
+<<<<<<< HEAD
     }
   }
 }
+=======
+    }
+  },
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/social-services-app/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/backend/social-services-app/$1"
+    }
+  ]
+}
+>>>>>>> 43749ce5abec2e9b3a9c59090db15b0f4a968662
