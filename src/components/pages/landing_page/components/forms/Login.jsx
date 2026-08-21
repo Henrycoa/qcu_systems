@@ -38,9 +38,9 @@ const Login = ({ onLoginSuccess, onBack, onSwitchToRegister }) => {
 
   const handleLogin = async (username, password) => {
     try {
-      // ✅ GAMITIN ANG VERCEL PROXY ENDPOINT
-      const url = '/api/login';
-      console.log('🔄 Attempting login to proxy:', url);
+      // ✅ GAMITIN ANG CORS PROXY PARA MA-BYPASS ANG CORS
+      const url = 'https://cors-anywhere.herokuapp.com/https://qcu.infinityfreeapp.com/backend/auth-file/login.php';
+      console.log('🔄 Attempting login to:', url);
       
       const response = await fetch(url, {
         method: 'POST',
