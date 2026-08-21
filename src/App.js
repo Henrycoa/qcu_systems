@@ -126,4 +126,6 @@ function App() {
 }
 
 export default App;
-// App.js - Updated for Vercel deployment
+// App.js - Updated for Vercel deployment wala naman nabago dito
+
+// hahaah
