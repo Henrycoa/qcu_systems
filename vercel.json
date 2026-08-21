@@ -1,10 +1,12 @@
 {
+  "build": {
+    "env": {
+      "DISABLE_ESLINT_PLUGIN": "true",
+      "CI": "false"
+    }
+  },
   "version": 2,
   "builds": [
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
-    },
     {
       "src": "backend/social-services-app/package.json",
       "use": "@vercel/static-build",
@@ -15,16 +17,8 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
       "src": "/(.*)",
       "dest": "/backend/social-services-app/$1"
     }
   ]
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 753244f73c77a972679404a78a983d449f573b69
