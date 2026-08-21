@@ -38,9 +38,9 @@ const Login = ({ onLoginSuccess, onBack, onSwitchToRegister }) => {
 
   const handleLogin = async (username, password) => {
     try {
-      // ✅ GAMITIN ANG ALTERNATIBONG CORS PROXY
-      const url = 'https://api.allorigins.win/raw?url=https://qcu.infinityfreeapp.com/backend/auth-file/login.php';
-      console.log('🔄 Attempting login to:', url);
+      // ✅ GAMITIN ANG SARILING VERCEL PROXY
+      const url = '/api/login';
+      console.log('🔄 Attempting login to proxy:', url);
       
       const response = await fetch(url, {
         method: 'POST',
